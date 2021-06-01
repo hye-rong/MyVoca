@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="quiz_spinner">
+        <item>day1</item>
+        <item>day2</item>
+        <item>day3</item>
+        <item>day4</item>
+        <item>day5</item>
+        <item>day6</item>
+    </string-array>
+</resources>
