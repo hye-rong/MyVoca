@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.example.myvoca.MyDBHelper
 import com.example.myvoca.R
 import com.example.myvoca.Voca
+import com.example.myvoca.VocaInfo
 import com.example.myvoca.databinding.ActivityQuizMutlipleBinding
 import com.example.myvoca.databinding.DialogAnswerBinding
 import kotlinx.coroutines.CoroutineScope
@@ -93,7 +94,7 @@ class QuizMutlipleActivity : AppCompatActivity() {
             binding.resultView.text = "오답"
             binding.resultView.setTextColor(ContextCompat.getColor(this,R.color.nohit))
             //오답 테이블
-            myDBHelper.insertWrong(quizList[pos])
+            myDBHelper.insertWrong(VocaInfo(quizList[pos].word, quizList[pos].mean, 0, quizList[arraylist[wrong]].mean))
 
         }
         binding.resultView.visibility = View.VISIBLE

@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import com.example.myvoca.MyDBHelper
 import com.example.myvoca.R
 import com.example.myvoca.Voca
+import com.example.myvoca.VocaInfo
 import com.example.myvoca.databinding.ActivityQuizEssayBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +49,7 @@ class QuizEssayActivity : AppCompatActivity() {
                 else {
                     editLayout.setBackgroundResource(R.drawable.card_red)
                     wordView.setTextColor(getColor(R.color.nohit))
-                    myDBHelper.insertWrong(quizList[pos])
+                    myDBHelper.insertWrong(VocaInfo(quizList[pos].word, quizList[pos].mean, 1, editText.text.toString()))
                 }
 
                 scope.launch {

@@ -62,4 +62,6 @@ class StudyActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }

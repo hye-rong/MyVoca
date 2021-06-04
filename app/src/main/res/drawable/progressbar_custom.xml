@@ -10,7 +10,7 @@
         <clip>
             <shape>
                 <corners android:radius="5dip" />
-                <gradient android:startColor="#EBD81B60" android:centerColor="#E1D81B60" android:endColor="#EBD81B60" android:centerY="0.75" android:angle="270" />
+                <gradient android:startColor="@color/basic" android:centerColor="@color/basic" android:endColor="@color/basic" android:centerY="0.75" android:angle="270" />
                 <stroke android:width="1dp" android:color="#979797"/>
                 <padding android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp" />
             </shape>

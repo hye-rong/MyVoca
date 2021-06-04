@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
+        android:textColor="#000000"
         android:text="word"
         android:textSize="20sp" />
     <TextView
@@ -20,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/hit"
         android:text="뜻"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
@@ -37,13 +38,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="다른 뜻"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/okbtn"
             android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/icon"
+            android:textSize="15sp"
             android:text="확인"
             android:background="@drawable/card_layout"
             />

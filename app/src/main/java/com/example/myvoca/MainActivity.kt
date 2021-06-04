@@ -3,17 +3,18 @@ package com.example.myvoca
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myvoca.check.CheckActivity
 import com.example.myvoca.databinding.ActivityMainBinding
 import com.example.myvoca.dic.DicActivity
 import com.example.myvoca.quiz.QuizActivity
-import com.example.myvoca.star.StarActivity
+import com.example.myvoca.check.StarCheckActivity
+import com.example.myvoca.share.ShareActivity
 import com.example.myvoca.study.StudyActivity
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var myDBHelper: MyDBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -21,9 +22,7 @@ class MainActivity : AppCompatActivity() {
         init()
     }
     private fun init(){
-
         myDBHelper = MyDBHelper(this)
-
         binding.apply {
             dicView.setOnClickListener {
                 val intent = Intent(this@MainActivity, DicActivity::class.java)
@@ -38,11 +37,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             starView.setOnClickListener {
-                val intent = Intent(this@MainActivity, StarActivity::class.java)
+                val intent = Intent(this@MainActivity, StarCheckActivity::class.java)
                 startActivity(intent)
             }
-            checkView.setOnClickListener {
-                val intent = Intent(this@MainActivity, CheckActivity::class.java)
+            shareView.setOnClickListener {
+                val intent = Intent(this@MainActivity, ShareActivity::class.java)
                 startActivity(intent)
             }
         }

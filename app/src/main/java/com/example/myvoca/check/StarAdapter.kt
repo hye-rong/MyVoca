@@ -1,8 +1,7 @@
-package com.example.myvoca.star
+package com.example.myvoca.check
 
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myvoca.Voca
@@ -14,7 +13,7 @@ class StarAdapter(val items:MutableList<Voca>): RecyclerView.Adapter<StarAdapter
         fun OnItemClick(holder: RecyclerView.ViewHolder, data:Voca, pos:Int)
     }
 
-    var itemClickListener:OnItemClickListener?=null
+    var itemClickListener: OnItemClickListener?=null
 
 
     inner class MyViewHolder(val binding: StarrowBinding): RecyclerView.ViewHolder(binding.root){

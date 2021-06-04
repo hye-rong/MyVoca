@@ -23,6 +23,7 @@ import java.util.regex.Pattern
 class AddFragment : Fragment() {
     lateinit var binding: FragmentAddBinding
     lateinit var myDBHelper: MyDBHelper
+
     val myViewModel: MyViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

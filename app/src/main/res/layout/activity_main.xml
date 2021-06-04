@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#D1D1D1"
+    android:background="@color/light"
     tools:context=".MainActivity"
     android:paddingHorizontal="10dp"
     android:paddingVertical="25dp">
@@ -13,13 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/layout_background"
+        android:background="@drawable/card_layout"
         android:layout_margin="15dp"
         android:gravity="center">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/dic"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:textStyle="bold"
+            android:textColor="#000000"
             android:text="단어장"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -33,14 +39,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/card_layout"
             android:layout_margin="15dp"
+            android:orientation="vertical"
             android:gravity="center">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/study"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="학습하기"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:text="학습"
                 android:textSize="20sp"/>
         </LinearLayout>
         <LinearLayout
@@ -48,13 +61,20 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/card_layout"
             android:layout_margin="15dp"
+            android:orientation="vertical"
             android:gravity="center">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/puzzle"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
                 android:text="퀴즈"
                 android:textSize="20sp"/>
         </LinearLayout>
@@ -69,29 +89,43 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/card_layout"
             android:layout_margin="15dp"
+            android:orientation="vertical"
             android:gravity="center">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/favorites"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="즐겨찾기"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:text="복습"
                 android:textSize="20sp"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/checkView"
+            android:id="@+id/shareView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_background"
+            android:background="@drawable/card_layout"
             android:layout_margin="15dp"
+            android:orientation="vertical"
             android:gravity="center">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/share"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="오답노트"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:text="공유"
                 android:textSize="20sp"/>
         </LinearLayout>
     </LinearLayout>

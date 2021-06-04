@@ -59,6 +59,7 @@ class StudyCheckFragment : Fragment() {
         day = dayViewModel.currentDay.value!!.day
         starCheck = dayViewModel.currentDay.value!!.rate
         vocaList = myDBHelper.getDayVoca(day, true)
+        Log.d("aaa", "day : $day, starCheck : $starCheck, vocaListSize: ${vocaList.size}")
     }
     private fun initView(){
         binding.apply {
@@ -67,32 +68,40 @@ class StudyCheckFragment : Fragment() {
                 check++
                 position++
                 wordOrMean = true
-                if(position >= 10 - starCheck)
+                if(position >= vocaList.size)
                 {
                     dayViewModel.setCurrentDay(Rate(day, starCheck + check, true))
                     myDBHelper.updateRate(day, starCheck + check)
                 }
                 else{
+                    dayViewModel.setCurrentDay(Rate(day, starCheck + check, false))
+                    myDBHelper.updateRate(day, starCheck + check)
                     setView()
                 }
             }
             negativeBtn.setOnClickListener {
                 position++
                 wordOrMean = true
-                if(position>= 10 - starCheck){
+                if(position>= vocaList.size){
                     dayViewModel.setCurrentDay(Rate(day, starCheck + check, true))
                     myDBHelper.updateRate(day, starCheck + check)
                 }
                 else{
+                    dayViewModel.setCurrentDay(Rate(day, starCheck + check, false))
+                    myDBHelper.updateRate(day, starCheck + check)
                     setView()
                 }
 
             }
             starBtn.setOnCheckedChangeListener { buttonView, isChecked ->
-                if(isChecked)
+                if(isChecked) {
                     myDBHelper.updateStar(vocaList[position], 1)
-                else
+                    vocaList[position].star = 1
+                }
+                else {
                     myDBHelper.updateStar(vocaList[position], 0)
+                    vocaList[position].star = 0
+                }
             }
             ttsBtn.setOnClickListener {
                 if(isTtsReady){

@@ -14,6 +14,7 @@ import com.example.myvoca.databinding.ActivityDayStudyBinding
 class DayStudyActivity : AppCompatActivity() {
     lateinit var binding: ActivityDayStudyBinding
     lateinit var myDBHelper: MyDBHelper
+
     var rate:Int = 0
     val dayViewModel: DayViewModel by viewModels()
     val studyCheckFragment = StudyCheckFragment()

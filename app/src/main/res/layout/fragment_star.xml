@@ -5,16 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".star.StarActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="북마크 단어"
-        />
+    tools:context=".check.StarFragment">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/star_recycler_view"
         android:layout_width="match_parent"

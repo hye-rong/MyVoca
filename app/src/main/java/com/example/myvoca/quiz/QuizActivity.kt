@@ -21,11 +21,13 @@ import com.example.myvoca.databinding.DicrowBinding
 import com.example.myvoca.databinding.PagerrowBinding
 
 class QuizActivity : AppCompatActivity() {
-    val items = arrayListOf<String>("day1","day2","day3","day4","day5","day6")
+    val items = arrayListOf("day1","day2","day3","day4","day5","day6")
+
     lateinit var binding: ActivityQuizBinding
     lateinit var quizList: ArrayList<Voca>
     lateinit var spinnerAdapter:ArrayAdapter<String>
     lateinit var myDBHelper: MyDBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)

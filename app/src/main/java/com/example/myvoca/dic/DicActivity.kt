@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrate
 class DicActivity : AppCompatActivity() {
     lateinit var binding: ActivityDicBinding
 
-    private val titles = arrayOf("Add", "Search", "Naver")
+    private val titles = arrayOf("SEARCH", "ADD", "DAUM")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +30,17 @@ class DicActivity : AppCompatActivity() {
         supportActionBar!!.elevation = 0f
 
         binding.viewPager.setAdapter(ViewPagerFragmentAdapter(this))
-        binding.viewPager.currentItem = 1
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager,
                 TabConfigurationStrategy { tab: TabLayout.Tab, position: Int -> tab.text = titles[position] }).attach()
     }
 
 
-
     inner class ViewPagerFragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return AddFragment()
-                1 -> return SearchFragment()
+                0 -> return SearchFragment()
+                1 -> return AddFragment()
                 2 -> return NaverFragment()
             }
             return SearchFragment()

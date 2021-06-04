@@ -22,9 +22,10 @@
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/tts_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_baseline_volume_down_24"/>
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/speakers"/>
             <ToggleButton
                 android:id="@+id/star_btn"
                 android:layout_width="40dp"
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="30sp"
+                android:textColor="#000000"
                 android:text="word"/>
         </LinearLayout>
 

@@ -14,8 +14,8 @@ import java.util.*
 
 class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     companion object{
-        val DB_NAME = "vocdb2.db"
-        val DB_VERSION = 3
+        val DB_NAME = "vocdb3.db"
+        val DB_VERSION = 2
         val VOC_TABLE_NAME = "voca"
         val DAY_TABLE_NAME = "dayvoc"
         val WRONG_TABLE_NAME = "wrongvoc"
@@ -25,10 +25,13 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         val VSTAR = "vstar"
         val VCHECK = "vcheck"
         val VRATE = "vrate"
+        val VPART = "vpart"
+        val VINPUT = "vinput"
+
     }
 
-    fun getWrongVoca():MutableList<Voca>{
-        val vList = mutableListOf<Voca>()
+    fun getWrongVoca():MutableList<VocaInfo>{
+        val vList = mutableListOf<VocaInfo>()
         val strsql = "select * from $WRONG_TABLE_NAME"
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
@@ -39,7 +42,8 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
 
         do {
             vList.add(
-                    Voca(cursor.getString(0), cursor.getString(1))
+                    VocaInfo(cursor.getString(0), cursor.getString(1),
+                    cursor.getInt(2), cursor.getString(3))
             )
         } while (cursor.moveToNext())
 
@@ -180,11 +184,7 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
     }
 
     fun insertVoca(voca: Voca):Boolean{
-        val strsql = "select * from $VOC_TABLE_NAME where $VWORD='${voca.word}'"
-        var db  = readableDatabase
-
-        val cursor = db.rawQuery(strsql, null)
-        var flag:Boolean
+        var db  = writableDatabase
 
         val values = ContentValues()
         values.put(VWORD, voca.word)
@@ -193,23 +193,19 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         values.put(VSTAR, voca.star)
         values.put(VCHECK, voca.check)
 
-        if(cursor.count!=0){
-            flag = db.update(VOC_TABLE_NAME,values, "$VWORD=?", arrayOf(voca.word)) >0
-        }else{
-            flag = db.insert(VOC_TABLE_NAME, null, values) >0
-        }
-        return flag
+        db.insert(VOC_TABLE_NAME, null, values)
+        return true
     }
 
 
-    fun deleteVoca(vword: String):Boolean{
-        val strsql = "select * from $VOC_TABLE_NAME where $VWORD='$vword'"
+    fun deleteVoca(vocaInfo: VocaInfo):Boolean{
+        val strsql = "select * from $WRONG_TABLE_NAME where $VWORD='${vocaInfo.word}'"
         val db = writableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count!=0
         if(flag){
             cursor.moveToFirst()
-            db.delete(VOC_TABLE_NAME, "$VWORD=?", arrayOf(vword))
+            db.delete(WRONG_TABLE_NAME, "$VWORD=?", arrayOf(vocaInfo.word))
         }
         cursor.close()
         db.close()
@@ -265,20 +261,16 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         db.close()
         return rate
     }
-    fun insertWrong(voca:Voca){
-        val strsql = "select * from $WRONG_TABLE_NAME where $VWORD='${voca.word}'"
-        var db  = readableDatabase
-
-        val cursor = db.rawQuery(strsql, null)
-
+    fun insertWrong(vocaInfo: VocaInfo){
+        var db  = writableDatabase
 
         val values = ContentValues()
-        values.put(VWORD, voca.word)
-        values.put(VMEAN, voca.mean)
+        values.put(VWORD, vocaInfo.word)
+        values.put(VMEAN, vocaInfo.mean)
+        values.put(VPART, vocaInfo.part)
+        values.put(VINPUT, vocaInfo.wInput)
 
-        if(cursor.count==0){
-            db.insert(WRONG_TABLE_NAME, null, values)
-        }
+        db.insert(WRONG_TABLE_NAME, null, values)
 
     }
 
@@ -315,7 +307,9 @@ class MyDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         }
         val create_table3 = "create table if not exists $WRONG_TABLE_NAME("+
                 "$VWORD text, "+
-                "$VMEAN text);"
+                "$VMEAN text, "+
+                "$VPART integer, "+
+                "$VINPUT text);"
         db.execSQL(create_table3)
 
     }

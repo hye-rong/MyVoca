@@ -1,10 +1,6 @@
 package com.example.myvoca.dic
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.setTag
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.example.myvoca.MyDBHelper
 import com.example.myvoca.MyViewModel
 import com.example.myvoca.R
@@ -29,14 +24,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
-import java.lang.Float.max
-import java.lang.Float.min
 
 
 class NaverFragment : Fragment() {
     lateinit var binding: FragmentNaverBinding
     lateinit var myadapter:MyNaverAdapter
     lateinit var myDBHelper: MyDBHelper
+
     val myViewModel: MyViewModel by activityViewModels()
     val scope = CoroutineScope(Dispatchers.IO)
 
@@ -54,15 +48,13 @@ class NaverFragment : Fragment() {
         myadapter = MyNaverAdapter(data)
 
         myadapter.btnClickListener = object : MyNaverAdapter.OnBtnClickListener{
-            override fun OnBtnClick(holder: MyNaverAdapter.MyViewHolder, data:Voca, pos:Int) {
-                val voc = Voca(data.word,data.mean)
+            override fun OnBtnClick(holder: MyNaverAdapter.MyViewHolder, data: Voca, pos: Int) {
+                val voc = Voca(data.word, data.mean)
                 myDBHelper.insertVoca(voc)
                 myViewModel.addVoca(voc)
                 holder.binding.addImageView.setImageResource(R.drawable.ic_baseline_check_24)
                 Toast.makeText(context, "단어 추가", Toast.LENGTH_LONG).show()
             }
-
-
         }
 
         binding.naverRecycler.apply {
@@ -73,15 +65,15 @@ class NaverFragment : Fragment() {
 
         }
 
-
-
         binding.searchBtn.setOnClickListener {
-            val query = binding.naverEdit.text.toString()
-            binding.naverEdit.text.clear()
             myadapter.items.clear()
+            val query = binding.naverEdit.text.toString()
+            getWord(query)
+            binding.naverEdit.text.clear()
+            binding.orientView.orientation = LinearLayout.HORIZONTAL
+            binding.naverRecycler.visibility = View.VISIBLE
             val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(binding.naverEdit.windowToken, 0)
-            getWord(query)
         }
         binding.naverEdit.setOnEditorActionListener{ textView, action, event ->
             var handled = false
@@ -96,13 +88,9 @@ class NaverFragment : Fragment() {
             handled
         }
 
-
-
-
-
     }
 
-    private fun getWord(data:String):MutableList<Voca>{
+    private fun getWord(data: String):MutableList<Voca>{
         val url = "https://dic.daum.net/search.do?q=" + data + "&dic=eng&search_first=Y"
         val dataList = mutableListOf<Voca>()
         scope.launch {

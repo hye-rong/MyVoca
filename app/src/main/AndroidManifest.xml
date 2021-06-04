@@ -7,20 +7,21 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="201811197 어혜령"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyVoca"
         android:usesCleartextTraffic="true">
-        <activity android:name=".quiz.QuizPuzzleActivity"></activity>
+        <activity android:name=".check.StarCheckActivity"></activity>
+        <activity android:name=".share.ShareVocaActivity" />
+        <activity android:name=".share.ShareActivity"></activity>
+        <activity android:name=".quiz.QuizPuzzleActivity" />
         <activity android:name=".quiz.QuizDictationActivity" />
         <activity android:name=".quiz.QuizListeningActivity" />
         <activity android:name=".quiz.QuizEssayActivity" />
         <activity android:name=".quiz.QuizMutlipleActivity" />
         <activity android:name=".study.DayStudyActivity" />
         <activity android:name=".study.StudyActivity" />
-        <activity android:name=".check.CheckActivity" />
-        <activity android:name=".star.StarActivity" />
         <activity android:name=".quiz.QuizActivity" />
         <activity android:name=".dic.DicActivity" />
         <activity android:name=".MainActivity">

@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_200">#6FC6CA</color>
+    <color name="purple_500">#56A9AE</color>
+    <color name="purple_700">#3A8589</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="hit">#5C6BC0</color>
-    <color name="nohit">#FF7043</color>
+    <color name="hit">#72D2D6</color>
+    <color name="nohit">#EE7D9E</color>
     <color name="textcolor">#777777</color>
-    <color name="first">#EC407A</color>
-    <color name="second">#7E57C2</color>
-    <color name="third">#42A5F5</color>
-    <color name="fourth">#26A69A</color>
-    <color name="fifth">#66BB6A</color>
+    <color name="first">#F4B545</color>
+    <color name="second">#886CCD</color>
+    <color name="third">#EE7D9E</color>
+    <color name="fourth">#72D2D6</color>
+    <color name="fifth">#60D197</color>
+    <color name="basic">#6BBFC3</color>
+    <color name="light">#ECF6F8</color>
+    <color name="light2">#EEF8F9</color>
+    <color name="icon">#6FC6CA</color>
+    <color name="thick">#3A8589</color>
+    <color name="clicked">#D7EFEF</color>
+    <color name="lightgrey">#ECECEC</color>
+    <color name="grey">#C7C7C7</color>
+    <color name="thickgrey">#777777</color>
 </resources>

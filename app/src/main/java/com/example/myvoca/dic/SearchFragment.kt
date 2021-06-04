@@ -20,34 +20,34 @@ import com.example.myvoca.databinding.FragmentSearchBinding
 
 
 class SearchFragment : Fragment() {
-    var binding:FragmentSearchBinding?=null
+    lateinit var binding: FragmentSearchBinding
     lateinit var adapter:MyRecyclerAdapter
     lateinit var myDBHelper: MyDBHelper
+
     val myViewModel: MyViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myDBHelper = MyDBHelper(requireContext())
-        binding!!.searchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
+        binding.searchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL, false)
 
 
         adapter = MyRecyclerAdapter(myDBHelper.getAllRecord())
-        //Toast.makeText(context, "지금 어댑터 새로 만든다!!!!!!!", Toast.LENGTH_SHORT).show()
         adapter.itemClickListener = object: MyRecyclerAdapter.OnItemClickListener{
             override fun OnStarChecked(holder: RecyclerView.ViewHolder,data:Voca, pos:Int, star:Int) {
                 myDBHelper.updateStar(data, star)
             }
         }
-        binding!!.searchRecyclerView.adapter = adapter
+        binding.searchRecyclerView.adapter = adapter
 
-        binding!!.searchEdit.addTextChangedListener(object : TextWatcher{
+        binding.searchEdit.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 val str = s.toString()
                 adapter.filter.filter(str)
